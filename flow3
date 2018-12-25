@@ -1,0 +1,88 @@
+[
+    {
+        "id": "445e5816.79b5c8",
+        "type": "tab",
+        "label": "Flow 5",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "926e4e98.6fcff",
+        "type": "inject",
+        "z": "445e5816.79b5c8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 310,
+        "y": 180,
+        "wires": [
+            [
+                "7597a13e.fdd5e"
+            ]
+        ]
+    },
+    {
+        "id": "7597a13e.fdd5e",
+        "type": "function",
+        "z": "445e5816.79b5c8",
+        "name": "Payload",
+        "func": "msg.headers = {\n    deviceKey:\"PxNn0009U91qn1Hu\"\n};\nmsg.payload = \"Temperature,,24.3\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 530,
+        "y": 200,
+        "wires": [
+            [
+                "be182db7.622e9"
+            ]
+        ]
+    },
+    {
+        "id": "be182db7.622e9",
+        "type": "http request",
+        "z": "445e5816.79b5c8",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://api.mediatek.com/mcs/v2/devices/D14EKzeI/datapoints.csv",
+        "tls": "",
+        "x": 710,
+        "y": 200,
+        "wires": [
+            [
+                "94714073.d4a9",
+                "ec5875e0.f98518"
+            ]
+        ]
+    },
+    {
+        "id": "94714073.d4a9",
+        "type": "http response",
+        "z": "445e5816.79b5c8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 870,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "ec5875e0.f98518",
+        "type": "debug",
+        "z": "445e5816.79b5c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 870,
+        "y": 120,
+        "wires": []
+    }
+]

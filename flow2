@@ -1,0 +1,88 @@
+[
+    {
+        "id": "76a2c1a8.9303",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a19c2337.795af",
+        "type": "inject",
+        "z": "76a2c1a8.9303",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 290,
+        "y": 240,
+        "wires": [
+            [
+                "f7f345ad.bf4b18"
+            ]
+        ]
+    },
+    {
+        "id": "f7f345ad.bf4b18",
+        "type": "function",
+        "z": "76a2c1a8.9303",
+        "name": "Payload",
+        "func": "msg.headers = {\n    deviceKey:\"PxNn0009U91qn1Hu\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 510,
+        "y": 260,
+        "wires": [
+            [
+                "35993440.d77f3c"
+            ]
+        ]
+    },
+    {
+        "id": "35993440.d77f3c",
+        "type": "http request",
+        "z": "76a2c1a8.9303",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/D14EKzeI/datachannels/Temperature/datapoints.csv",
+        "tls": "",
+        "x": 690,
+        "y": 260,
+        "wires": [
+            [
+                "1839aa31.b52616",
+                "a506dfc7.fcf73"
+            ]
+        ]
+    },
+    {
+        "id": "1839aa31.b52616",
+        "type": "http response",
+        "z": "76a2c1a8.9303",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 850,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "a506dfc7.fcf73",
+        "type": "debug",
+        "z": "76a2c1a8.9303",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 850,
+        "y": 180,
+        "wires": []
+    }
+]
